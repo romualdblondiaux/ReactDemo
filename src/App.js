@@ -17,6 +17,9 @@ class App extends Component {
       <Membre nom="Romuald" />
       <Membre nom="Martin" />
       <Membre nom="François" />
+      <Membre nom="Ace">
+        je suis le meilleurs
+      </Membre>
       </Fragment>
       // React.createElement('div', {className: 'App'}, React.createElement('h1',null,'React App')) 
       // remplacer Fragment par <> et fermeture </>
