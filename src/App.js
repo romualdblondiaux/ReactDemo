@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
-import './App.css';
-import Membre from './components/Membre';
+import './App.css'
+import Membre from './components/Membre'
+import Button from './components/Button'
 
 const league = {
   membre1: {
@@ -18,12 +19,11 @@ const league = {
   membre4: {
     nom: 'Catwoman',
     age: 30
-  },
+  }
 }
-
 class App extends Component {
   state = {
-    league : league
+    league : league 
   }
 
   handleClick = (nb) => {
@@ -49,20 +49,19 @@ class App extends Component {
     })
 
 
-
-    return ( 
-      <Fragment> 
-      <div className="App">
-        <h1>{this.props.title}</h1>
-        <h2>{title}</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem velit repudiandae quasi aspernatur soluta similique possimus vel? Voluptatibus aut cumque ipsam perferendis, nobis quis, deserunt iusto quod voluptates dolorem, labore nisi doloribus delectus beatae. Deserunt veritatis autem excepturi eos nesciunt, sapiente eaque reiciendis libero molestiae consequatur voluptatibus perspiciatis illum iste quas molestias consequuntur. Id alias sint possimus rem? Dolore eos dolor iusto aut commodi, explicabo consequuntur vero quaerat, qui, accusamus officia iure molestiae ipsa rerum harum autem enim illum! Tenetur id sint itaque rem veniam deleniti laudantium aliquam eligendi enim delectus aperiam sunt magni molestias, provident, culpa quibusdam, facilis repellat.</p>
-      </div>
-      <div>Test</div>
-        <input 
+    return(
+        <Fragment>
+          <div className="App">
+            <h1>{this.props.title}</h1>
+            <h2>{title}</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut recusandae adipisci quaerat quae, eveniet voluptatem voluptates atque libero voluptate necessitatibus beatae rerum hic debitis cum, deserunt dolorem doloremque nemo error modi molestias rem ex quisquam illum! Accusantium, molestiae? Error corporis, excepturi cumque incidunt quam veritatis sint molestias deleniti ipsam fugit ipsum amet laborum omnis illo est voluptas, eveniet eum ducimus, earum obcaecati. Quo cum earum quae, quos ipsa, facere veniam numquam ipsum, ullam voluptate assumenda esse iusto accusamus laborum! Sint quod commodi assumenda voluptatibus, ex nulla velit ducimus accusantium tempore ab a architecto quasi provident nisi tempora doloremque culpa ut?</p>
+          </div>
+          <div>test</div>
+          <input 
           value={this.state.league.membre1.nom}
           onChange={this.handleChange}
           type="text"/>
-        <Membre 
+          <Membre 
           age={this.state.league.membre1.age}
           nom={this.state.league.membre1.nom} />
           <Membre 
@@ -79,16 +78,14 @@ class App extends Component {
           nom="Ace">
             Je suis le batdog  
           </Membre>
-          <button onClick={this.handleClick}>+1</button>
           <Button 
           nb={nb}
-          vieillir={()=> this.handleClick(nb)} /> 
+          vieillir={()=> this.handleClick(nb)} />
           <h1>Rendu avec boucle</h1>
-          {liste} 
-      </Fragment>
-      // React.createElement('div', {className: 'App'}, React.createElement('h1',null,'React App')) 
-      // remplacer Fragment par <> et fermeture </>
-     );
+          {liste}
+        </Fragment>
+      //React.createElement('div', {className: 'App'}, React.createElement('h1',null,'React App'))
+    )
   }
 }
  
