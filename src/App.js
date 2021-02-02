@@ -23,7 +23,8 @@ const league = {
 }
 class App extends Component {
   state = {
-    league : league 
+    league : league,
+    isShow: false
   }
 
   handleClick = (nb) => {
@@ -32,59 +33,47 @@ class App extends Component {
     this.setState({league:league})
   }
 
-  handleChange = (event) => {
+  handleShow = () => {
+    const isShow = !this.state.isShow // ! retourner l'inverse (système de toggle)
+    this.setState({isShow})
+  }
+
+  handleChange = (event,id) => {
     const league = {...this.state.league}
     const nom = event.target.value
-    league.membre1.nom = nom
+    league[id].nom = nom
     this.setState({league:league})
   }
 
+  hideName = (id) => {
+    //console.log(id)
+    const league = {...this.state.league}
+
+    league[id].nom = 'X'
+
+    this.setState({league})
+  }
+
   render() { 
-    const {title} = this.props
-    const nb = 5
+
     const liste = Object.keys(this.state.league).map(membre => {
       return (
-        <Membre key={membre} age={this.state.league[membre].age} nom={this.state.league[membre].nom} />
+        <Membre 
+          key={membre} 
+          hideName = {() => this.hideName(membre) }
+          handleChange = {(event) => this.handleChange(event,membre)}
+          age={this.state.league[membre].age} 
+          nom={this.state.league[membre].nom} />
       )
     })
-
 
     return(
         <Fragment>
           <div className="App">
             <h1>{this.props.title}</h1>
-            <h2>{title}</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut recusandae adipisci quaerat quae, eveniet voluptatem voluptates atque libero voluptate necessitatibus beatae rerum hic debitis cum, deserunt dolorem doloremque nemo error modi molestias rem ex quisquam illum! Accusantium, molestiae? Error corporis, excepturi cumque incidunt quam veritatis sint molestias deleniti ipsam fugit ipsum amet laborum omnis illo est voluptas, eveniet eum ducimus, earum obcaecati. Quo cum earum quae, quos ipsa, facere veniam numquam ipsum, ullam voluptate assumenda esse iusto accusamus laborum! Sint quod commodi assumenda voluptatibus, ex nulla velit ducimus accusantium tempore ab a architecto quasi provident nisi tempora doloremque culpa ut?</p>
+            {liste}
           </div>
-          <div>test</div>
-          <input 
-          value={this.state.league.membre1.nom}
-          onChange={this.handleChange}
-          type="text"/>
-          <Membre 
-          age={this.state.league.membre1.age}
-          nom={this.state.league.membre1.nom} />
-          <Membre 
-          age={this.state.league.membre2.age}
-          nom={this.state.league.membre2.nom} />
-          <Membre 
-          age={this.state.league.membre3.age}
-          nom={this.state.league.membre3.nom} />
-          <Membre 
-          age={this.state.league.membre4.age}
-          nom={this.state.league.membre4.nom} />   
-          <Membre 
-          age="2"
-          nom="Ace">
-            Je suis le batdog  
-          </Membre>
-          <Button 
-          nb={nb}
-          vieillir={()=> this.handleClick(nb)} />
-          <h1>Rendu avec boucle</h1>
-          {liste}
-        </Fragment>
-      //React.createElement('div', {className: 'App'}, React.createElement('h1',null,'React App'))
+        </Fragment> 
     )
   }
 }
